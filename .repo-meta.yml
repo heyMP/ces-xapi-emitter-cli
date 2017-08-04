@@ -1,0 +1,13 @@
+---
+$schemaver: "2.0" # required
+software:
+  - type: "command-line app" # required string and one of: background process, command-line app, desktop app, library, mobile app, saas, server app, system image, web app, web service
+    assignment_group: "gro:AD-Software Architecture" # required string and prefixed with 'gro:' to show it's a GRO group name
+    stages: # required section denoting the stages where this app is deployed
+      dev: # name of the stage this system is deployed to (should be one of the stages in the Software CI type in the CMDB converted to lowercase)
+        hosting_location: "Other" # required string which is the name of the Hosting Location CI to use in the CMDB
+    tags: # optional, but will potentially be used to set AWS tags which will affect if your app is turned off automatically or not seehttps://byuoit.atlassian.net/wiki/display/OAPP/OIT-Wide+AWS+Access+Key+Management+Best+Practices#OIT-WideAWSAccessKeyManagementBestPractices-AutomaticallyturnoffordeleteAWSresourcesthataretaggedasdevelopment/stagingornottaggedatall
+      # https://byuoit.atlassian.net/wiki/display/OAPP/Tagging
+      data-sensitivity: "public" # one of 'public', 'internal', 'confidential' (default), 'highly confidential'.  More info at https://infohub.byu.edu/resources/classification
+      team: "AD-Software Architecture" # Get your group by going to https://it.byu.edu -> Your name in the top right -> Profile -> Primary Group
+      app: "cesxapi"
