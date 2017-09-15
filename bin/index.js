@@ -23,6 +23,7 @@ const usageMsg = `Usage: cesxapi <args>
 
 Options:
 -l            -- List supported CES Events
+-q            -- List all completed courses
 -e [required] -- The CES Event to be rendered as an xAPI statement
 -i [required] -- BYU ID that is the actor of the xAPI statement
 -u [required] -- URL of the xAPI endpoint
@@ -59,6 +60,13 @@ let argv = minimist(process.argv.slice(2));
 if(argv.l) {
   console.log(`Supported CES events:
   ${events.supportedEvents().join('\n  ')}`);
+}
+else if(argv.q) {
+  events.queryStatements(argv, function (statements) {
+    console.log(`Completed Courses:
+  ${statements.join('\n  ')}`);
+    process.exit(0);
+  });
 }
 else {
   let errors = events.validateArgs(argv);
